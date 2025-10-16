@@ -3,6 +3,7 @@ package com.sorteasy.sorteasy.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
@@ -12,7 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -37,18 +37,19 @@ public class Sorteio {
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @Column(nullable = false)
+    @Column
+    @CreatedDate
     private LocalDate dataCriacao;
 
     @Column
-    private boolean finalizado;
+    private boolean finalizado = false;
 
     @OneToMany(mappedBy = "sorteio")
-    private List<Participante> participantes;
+    private List<Participante> inscritos;
 
     @ManyToOne
     @JoinColumn(name = "vencedor_id", nullable = false)
-    private Participante participante;
+    private Participante vencedor;
 
     public Sorteio(Long id) {
         this.id = id;
