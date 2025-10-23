@@ -1,5 +1,7 @@
 package com.sorteasy.sorteasy.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sorteasy.sorteasy.dto.SorteioDTO;
-import com.sorteasy.sorteasy.entity.Sorteio;
+import com.sorteasy.sorteasy.service.SorteioService;
 
 import jakarta.validation.Valid;
 
@@ -38,9 +40,18 @@ public class SorteioController {
     }
 
     @GetMapping("/{id}/realizar")
-    public Sorteio realizarSorteio(@PathVariable("id") Long id) {
+    public SorteioDTO realizarSorteio(@PathVariable("id") Long id) {
         return service.realizarSorteio(id);
     }
+    @GetMapping("/sorteios/ativos")
+    public List<SorteioDTO> findSorteiosAtivos() {
+        return service.findSorteiosAtivos();
+    }
+    @GetMapping("/sorteios/vencedores")
+    public List<SorteioDTO> findSorteiosVencedores() {
+        return service.findSorteiosAtivos();
+    }
+
     
     
 }

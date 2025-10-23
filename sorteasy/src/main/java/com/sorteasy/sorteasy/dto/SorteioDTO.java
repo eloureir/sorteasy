@@ -1,6 +1,5 @@
 package com.sorteasy.sorteasy.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotBlank;
@@ -22,5 +21,5 @@ public class SorteioDTO {
     @NotBlank(message = "O nome do sorteio é obrigatório")
     @Size(max = 150, message = "O nome do sorteio deve ter no máximo 150 caracteres")
     private String nome;
-    
+
 }
